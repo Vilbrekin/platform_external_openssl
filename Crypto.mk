@@ -1,6 +1,7 @@
 #######################################
 # target static library
 include $(CLEAR_VARS)
+
 LOCAL_SHARED_LIBRARIES := $(log_shared_libraries)
 
 # The static library should be used in only unbundled apps
@@ -55,7 +56,7 @@ LOCAL_MODULE := libcrypto-host
 LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/android-config.mk $(LOCAL_PATH)/Crypto.mk
 include $(LOCAL_PATH)/Crypto-config-host.mk
 include $(LOCAL_PATH)/android-config.mk
-include $(BUILD_HOST_SHARED_LIBRARY)
+#include $(BUILD_HOST_SHARED_LIBRARY)
 
 ########################################
 # host static library, which is used by some SDK tools.
@@ -69,4 +70,4 @@ LOCAL_MODULE := libcrypto_static
 LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/android-config.mk $(LOCAL_PATH)/Crypto.mk
 include $(LOCAL_PATH)/Crypto-config-host.mk
 include $(LOCAL_PATH)/android-config.mk
-include $(BUILD_HOST_STATIC_LIBRARY)
+#include $(BUILD_HOST_STATIC_LIBRARY)

@@ -441,6 +441,7 @@ common_src_files := \
   crypto/rsa/rsa_asn1.c \
   crypto/rsa/rsa_chk.c \
   crypto/rsa/rsa_crpt.c \
+  crypto/rsa/rsa_depr.c \
   crypto/rsa/rsa_eay.c \
   crypto/rsa/rsa_err.c \
   crypto/rsa/rsa_gen.c \
@@ -532,13 +533,13 @@ common_src_files := \
   crypto/x509v3/v3err.c \
 
 common_c_includes := \
-  external/openssl/. \
-  external/openssl/crypto \
-  external/openssl/crypto/asn1 \
-  external/openssl/crypto/evp \
-  external/openssl/crypto/modes \
-  external/openssl/include \
-  external/openssl/include/openssl \
+  $(LOCAL_PATH)/. \
+  $(LOCAL_PATH)/crypto \
+  $(LOCAL_PATH)/crypto/asn1 \
+  $(LOCAL_PATH)/crypto/evp \
+  $(LOCAL_PATH)/crypto/modes \
+  $(LOCAL_PATH)/include \
+  $(LOCAL_PATH)/include/openssl \
 
 arm_cflags := \
   -DAES_ASM \
@@ -713,3 +714,7 @@ LOCAL_CFLAGS_x86_64 += $(x86_64_cflags)
 
 LOCAL_SRC_FILES_mips += $(filter-out $(mips_exclude_files),$(common_src_files) $(mips_src_files))
 LOCAL_CFLAGS_mips += $(mips_cflags)
+
+LOCAL_SRC_FILES = $(LOCAL_SRC_FILES_$(TARGET_ARCH))
+LOCAL_CFLAGS += $(LOCAL_CFLAGS_$(TARGET_ARCH))
+

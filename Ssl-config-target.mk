@@ -64,9 +64,9 @@ common_src_files := \
   ssl/tls_srp.c \
 
 common_c_includes := \
-  external/openssl/. \
-  external/openssl/crypto \
-  external/openssl/include \
+  $(LOCAL_PATH)/. \
+  $(LOCAL_PATH)/crypto \
+  $(LOCAL_PATH)/include \
 
 arm_cflags :=
 
@@ -116,3 +116,6 @@ LOCAL_CFLAGS_x86_64 += $(x86_64_cflags)
 
 LOCAL_SRC_FILES_mips += $(filter-out $(mips_exclude_files),$(common_src_files) $(mips_src_files))
 LOCAL_CFLAGS_mips += $(mips_cflags)
+
+LOCAL_SRC_FILES = $(LOCAL_SRC_FILES_$(TARGET_ARCH))
+LOCAL_CFLAGS += $(LOCAL_CFLAGS_$(TARGET_ARCH))
