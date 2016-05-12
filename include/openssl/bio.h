@@ -175,6 +175,8 @@ extern "C" {
 #define BIO_CTRL_DGRAM_SET_NEXT_TIMEOUT   45 /* Next DTLS handshake timeout to
                                               * adjust socket timeouts */
 
+#define BIO_CTRL_DGRAM_GET_MTU_OVERHEAD   49
+
 #ifndef OPENSSL_NO_SCTP
 /* SCTP stuff */
 #define BIO_CTRL_DGRAM_SCTP_SET_IN_HANDSHAKE	50
@@ -610,6 +612,8 @@ int BIO_ctrl_reset_read_request(BIO *b);
          (int)BIO_ctrl(b, BIO_CTRL_DGRAM_GET_PEER, 0, (char *)peer)
 #define BIO_dgram_set_peer(b,peer) \
          (int)BIO_ctrl(b, BIO_CTRL_DGRAM_SET_PEER, 0, (char *)peer)
+#define BIO_dgram_get_mtu_overhead(b) \
+         (unsigned int)BIO_ctrl((b), BIO_CTRL_DGRAM_GET_MTU_OVERHEAD, 0, NULL)
 
 /* These two aren't currently implemented */
 /* int BIO_get_ex_num(BIO *bio); */
@@ -641,6 +645,7 @@ BIO *	BIO_new(BIO_METHOD *type);
 int	BIO_set(BIO *a,BIO_METHOD *type);
 int	BIO_free(BIO *a);
 void	BIO_vfree(BIO *a);
+BIO *	BIO_up_ref(BIO *bio);
 int	BIO_read(BIO *b, void *data, int len);
 int	BIO_gets(BIO *bp,char *buf, int size);
 int	BIO_write(BIO *b, const void *data, int len);

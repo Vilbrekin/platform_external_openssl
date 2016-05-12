@@ -31,10 +31,6 @@ LOCAL_C_INCLUDES := $(log_c_includes)
 # in the NDK.
 ifeq (,$(TARGET_BUILD_APPS))
 LOCAL_CLANG := true
-ifeq ($(HOST_OS), darwin)
-LOCAL_ASFLAGS += -no-integrated-as
-LOCAL_CFLAGS += -no-integrated-as
-endif
 else
 LOCAL_SDK_VERSION := 9
 endif
@@ -58,6 +54,7 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE := libcrypto-host
 LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/android-config.mk $(LOCAL_PATH)/Crypto.mk
 LOCAL_MULTILIB := both
+LOCAL_CXX_STL := none
 include $(LOCAL_PATH)/Crypto-config-host.mk
 include $(LOCAL_PATH)/android-config.mk
 #include $(BUILD_HOST_SHARED_LIBRARY)
@@ -73,6 +70,7 @@ LOCAL_LDLIBS += -ldl
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE := libcrypto_static
 LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/android-config.mk $(LOCAL_PATH)/Crypto.mk
+LOCAL_CXX_STL := none
 include $(LOCAL_PATH)/Crypto-config-host.mk
 include $(LOCAL_PATH)/android-config.mk
 #include $(BUILD_HOST_STATIC_LIBRARY)
