@@ -2,6 +2,9 @@
 # target static library
 include $(CLEAR_VARS)
 
+# Work-around linker bug on windows
+LOCAL_SHORT_COMMANDS := true
+
 LOCAL_SHARED_LIBRARIES := $(log_shared_libraries)
 LOCAL_C_INCLUDES := $(log_c_includes)
 

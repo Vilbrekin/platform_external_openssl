@@ -4,6 +4,9 @@ include $(CLEAR_VARS)
 LOCAL_SHARED_LIBRARIES := $(log_shared_libraries)
 LOCAL_C_INCLUDES := $(log_c_includes)
 
+# Work-around linker bug on windows
+LOCAL_SHORT_COMMANDS := true
+
 # The static library should be used in only unbundled apps
 # and we don't have clang in unbundled build yet.
 LOCAL_SDK_VERSION := 9
